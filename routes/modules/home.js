@@ -3,8 +3,8 @@ const express = require('express')
 const router = express.Router()
 // urlHelpers
 const urlHelpers = require('../../tools/urlHelpers')
-// baseUrl
-const baseUrl = 'http://localhost:3000'
+// baseUrl Heroku : process.env.baseUrl ; Local : http://localhost:3000
+const baseUrl = process.env.baseUrl || 'http://localhost:3000'
 // URL Schema
 const URL = require('../../models/url')
 
