@@ -4,6 +4,10 @@ AlphaCamp Project : URL-shortener
 
 ## 主要功能
 
+- 使用者可以輸入網址
+- 使用者可以將輸入網址轉換為短網址
+- 使用者可以點擊 Copy 按鈕複製短網址
+
 ## 專案畫面演示
 
 ## Heroku 網站演示
