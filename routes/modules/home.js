@@ -13,20 +13,37 @@ router.get('/', (req, res) => {
 })
 
 // 收到短網址請求
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const originalUrl = req.body.originalUrl.trim()
   // 驗證URL
   const isValidation = urlHelpers.isValidation(originalUrl)
   if (isValidation) {
-    const urlCode = urlHelpers.randomUrlCode()
+    // 檢查是否有對應的短網址
+    const url = await URL.findOne({ originalUrl }).lean()
+    if (url) {
+      return res.render('index', { isValidation, originalUrl, shortUrl: url.shortUrl })
+    }
+
+    // 產生urlCode
+    let urlCode = ''
+    let existUrl = null
+    do {
+      urlCode = urlHelpers.randomUrlCode()
+      // 檢查資料庫是否已有此urlCode
+      existUrl = await URL.findOne({ urlCode }).lean()
+    } while (existUrl)
+
+    // 短網址資料存入資料庫
     const shortUrl = `${baseUrl}/${urlCode}`
     URL.create({
       originalUrl,
       urlCode,
       shortUrl
-    }).then(() => {
-      res.render('index', { isValidation, originalUrl, shortUrl })
-    }).catch((error) => console.error(error))
+    })
+      .then(() => {
+        res.render('index', { isValidation, originalUrl, shortUrl })
+      })
+      .catch((error) => console.error(error))
   } else {
     res.render('index', { isValidation, originalUrl })
   }
