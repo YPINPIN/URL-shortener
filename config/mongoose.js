@@ -1,6 +1,7 @@
 // mongoose
 const mongoose = require('mongoose')
-const MONGODB_URI = 'mongodb://localhost/URL-shortener'
+// Heroku : process.env.MONGODB_URI ; Local : mongodb://localhost
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/URL-shortener'
 
 // 連線DB
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })

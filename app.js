@@ -1,8 +1,8 @@
 // Express
 const express = require('express')
 const exphbs = require('express-handlebars')
-// server port
-const port = 3000
+// server port Heroku : process.env.PORT ; Local : 3000
+const port = process.env.PORT || 3000
 
 // routes
 const routes = require('./routes')
