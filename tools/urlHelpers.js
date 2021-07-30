@@ -11,7 +11,6 @@ function isValidation(url) {
 // urlCode
 function randomUrlCode() {
   let urlCode = getRandomStr(codeString, codeLength)
-  console.log('urlCode', urlCode)
   return urlCode
 }
 

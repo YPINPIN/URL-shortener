@@ -22,6 +22,32 @@
             required
           />
         </div>
+        {{#if isValidation}}
+          <div class='input-group mb-3'>
+            <span
+              class='input-group-text bg-dark text-light'
+              id='basic-addon3'
+            >短網址</span>
+            <input
+              type='text'
+              class='form-control'
+              value='{{shortUrl}}'
+              readonly
+            />
+            <button
+              class='btn btn-dark'
+              type='button'
+              id='button-addon2'
+            >Copy</button>
+          </div>
+        {{else}}
+          {{#if originalUrl}}
+            <div class='alert alert-danger mb-3 fs-5' role='alert'>
+              <i class='fas fa-sad-tear ml-1'></i>
+              請輸入有效網址
+            </div>
+          {{/if}}
+        {{/if}}
         <button
           type='submit'
           class='btn btn-dark btn-lg col-auto col-sm-4 mx-auto'
