@@ -10,7 +10,11 @@ AlphaCamp Project : URL-shortener
 
 ## 專案畫面演示
 
+![demo](./demo.gif)
+
 ## Heroku 網站演示
+
+https://sleepy-waters-74062.herokuapp.com/
 
 ## 環境建置
 
