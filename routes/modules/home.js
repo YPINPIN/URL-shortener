@@ -30,7 +30,20 @@ router.post('/', (req, res) => {
   } else {
     res.render('index', { isValidation, originalUrl })
   }
+})
 
+// 短網址跳轉
+router.get('/:urlCode', (req, res) => {
+  const urlCode = req.params.urlCode
+  URL.findOne({ urlCode })
+    .lean()
+    .then((url) => {
+      if (!url) {
+        return res.status(404).render('error')
+      }
+      res.redirect(url.originalUrl)
+    })
+    .catch((error) => console.error(error))
 })
 
 module.exports = router
