@@ -11,6 +11,8 @@ const app = express()
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+// body-parser
+app.use(express.urlencoded({ extended: true }))
 
 app.use(routes)
 
