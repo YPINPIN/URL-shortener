@@ -3,8 +3,8 @@ const express = require('express')
 const router = express.Router()
 // urlHelpers
 const urlHelpers = require('../../tools/urlHelpers')
-// baseUrl Heroku : process.env.baseUrl ; Local : http://localhost:3000
-const baseUrl = process.env.baseUrl || 'http://localhost:3000'
+// BASE_URL Heroku : process.env.BASE_URL ; Local : http://localhost:3000
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000'
 // URL Schema
 const URL = require('../../models/url')
 
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
     } while (existUrl)
 
     // 短網址資料存入資料庫
-    const shortUrl = `${baseUrl}/${urlCode}`
+    const shortUrl = `${BASE_URL}/${urlCode}`
     URL.create({
       originalUrl,
       urlCode,
